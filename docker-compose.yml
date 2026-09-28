@@ -3,6 +3,8 @@ services:
     build: ./backend
     ports:
       - "5000:5000"
+    depends_on:
+      - mongodb
 
   frontend:
     build: ./frontend
@@ -10,3 +12,12 @@ services:
       - "8080:80"
     depends_on:
       - backend
+
+  mongodb:
+    image: mongo:7.0
+    volumes:
+      - mongo-data:/data/db/
+
+volumes:
+  mongo-data:
+
